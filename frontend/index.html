@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singularium | Smart Task Analyzer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+
+    <div class="app-container">
+        <header>
+            <div class="logo-area">
+                <i class="fa-solid fa-brain"></i>
+                <h1>Singularium <span class="subtitle">Task Intelligence</span></h1>
+            </div>
+            <p>Develop BY : Nikhitha P</p>
+        </header>
+
+        <div class="workspace">
+            
+            <div class="panel input-section">
+                <div class="panel-header">
+                    <span class="panel-title"><i class="fa-solid fa-code"></i> Input JSON</span>
+                    <div class="window-controls">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                </div>
+                
+                <div class="editor-wrapper">
+                    <textarea id="taskInputArea" spellcheck="false"></textarea>
+                </div>
+
+                <div class="action-bar">
+                    <button id="clearButton" onclick="clearInput()" class="btn-secondary">
+                        <i class="fa-solid fa-trash"></i> Clear
+                    </button>
+                    <button id="analyzeButton" onclick="sendTasksToBackend('analyze')" class="btn-primary">
+                        Analyze All <i class="fa-solid fa-list-check"></i>
+                    </button>
+                    <button id="suggestButton" onclick="sendTasksToBackend('suggest')" class="btn-accent">
+                        Smart Suggest <i class="fa-solid fa-lightbulb"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="panel output-section">
+                <div class="panel-header">
+                    <span class="panel-title" id="outputTitle"><i class="fa-solid fa-chart-simple"></i> Results</span>
+                </div>
+                
+                <div id="suggestionMessage" class="suggestion-banner hidden"></div>
+
+                <div id="resultsContainer" class="results-scroller">
+                    <div class="empty-state">
+                        <i class="fa-regular fa-clipboard"></i>
+                        <p>Waiting for data...</p>
+                        <small>Paste your JSON tasks and select an action.</small>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>
